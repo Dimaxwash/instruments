@@ -20,4 +20,13 @@ class InstrumentController extends AbstractController
             'produits' => $produits
         ]);
     }
+
+    /**
+     * @Route("/instrument/{id}", name="instrument.details")
+     */
+    public function details(int $id, InstrumentRepository $instrumentRepository):Response
+    {
+        $result=$instrumentRepository->find($id);
+        return $this->render('instrument/details.html.twig', ['result' => $result]);
+    }
 }

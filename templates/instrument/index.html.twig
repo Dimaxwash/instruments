@@ -15,6 +15,7 @@
         <th>Description</th>
         <th>Image</th>
         <th>Price</th>
+        <th></th>
     </thead>
         
             {% for instrument in produits %}
@@ -24,6 +25,12 @@
                 <td>{{ instrument.description | capitalize}}</td>
                 <td>{{ instrument.image | capitalize}}</td>
                 <td>{{ instrument.price | capitalize }}€</td>
+                <td>
+                <a href="{{ url('instrument.details', {id: instrument.id})}} " class="btn btn-sm btn-info">Consulter</a>
+                <a href="#" class="btn btn-sm btn-warning">Modifier</a>
+                <a href="#}" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal">Supprimer</a>
+
+                </td>
             </tr>
             {% endfor %}
         
