@@ -16,8 +16,16 @@ class InstrumentController extends AbstractController
     {
         
         $produits= $instrumentRepository->findAll();
-        return $this->render('instrument/index.html.twig', [
+        return $this->render('instrument/produits.html.twig', [
             'produits' => $produits
         ]);
+    }
+
+   /**
+    * @Route("/index", name="index.homepage")
+    */ 
+    public function homepage():Response
+    {
+        return $this->render('instrument/index.html.twig');
     }
 }
