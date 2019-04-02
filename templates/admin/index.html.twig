@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} MusicShop {% endblock %}
+{% block icon %} <link rel="shortcut icon" type="image/x-icon" href="images/note.png" />{% endblock %}
+
+{% block body %}
+<h1 class="text-info">MusicShop</h1>
+
+<h4>Bienvenue chez <span class="text-info"> MusicShop</span>, n°1 de la vente e-commerce d'instrument musicaux. </h4>
+
+{# BOUTON AJOUTER #}
+<p class="text-right"><a href="{{ url('admin.form') }}" class="btn btn-primary">Ajouter</a></p>
+
+{# tableau #}
+    <table class="table table-striped mt-5">
+    <thead class="thead-dark">
+        <th>Name</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Price</th>
+        <th></th>
+    </thead>
+        
+            {% for instrument in produits %}
+            <tr>
+                <td class="font-weight-bold">{{ instrument.name | capitalize }}</td>
+                <td>{{ instrument.category | capitalize }}</td>
+                <td>{{ instrument.description | capitalize}}</td>
+                <td>{{ instrument.image | capitalize}}</td>
+                <td>{{ instrument.price | capitalize }}€</td>
+                <td>
+                <a href="{{ url('instrument.details', {id: instrument.id})}} " class="btn btn-sm btn-info">Consulter</a>
+                <a href="{{ url('admin.update', {id: instrument.id}) }}" class="btn btn-sm btn-warning">Modifier</a>
+                <a href="#}" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal">Supprimer</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        
+        
+    </table>
+    <a href="#"><button class="btn btn-info mt-5">Retour à la page d'accueil</button></a>
+{% endblock %}

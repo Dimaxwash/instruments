@@ -8,9 +8,6 @@
 
 <h4>Bienvenue chez <span class="text-info"> MusicShop</span>, n°1 de la vente e-commerce d'instrument musicaux. </h4>
 
-{# BOUTON AJOUTER #}
-<p class="text-right"><a href="{{ url('instruments.form') }}" class="btn btn-primary">Ajouter</a></p>
-
 {# tableau #}
     <table class="table table-striped mt-5">
     <thead class="thead-dark">
@@ -31,8 +28,7 @@
                 <td>{{ instrument.price | capitalize }}€</td>
                 <td>
                 <a href="{{ url('instrument.details', {id: instrument.id})}} " class="btn btn-sm btn-info">Consulter</a>
-                <a href="#" class="btn btn-sm btn-warning">Modifier</a>
-                <a href="#}" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal">Supprimer</a>
+                
 
                 </td>
             </tr>
