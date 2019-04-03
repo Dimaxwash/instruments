@@ -10,14 +10,23 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class InstrumentController extends AbstractController
 {
     /**
-     * @Route("/instruments", name="instrument.index")
+     * @Route("/instruments", name="instruments.table")
      */
-    public function index(InstrumentRepository $instrumentRepository):Response
+    public function table(InstrumentRepository $instrumentRepository):Response
     {
         
         $produits= $instrumentRepository->findAll();
-        return $this->render('instrument/index.html.twig', [
+        return $this->render('instrument/instruments.html.twig', [
             'produits' => $produits
         ]);
     }
+    
+    /**
+     * @Route("/", name="home.index")
+     */
+    public function index():Response
+    {
+        return $this->render('instrument/index.html.twig');
+    }
 }
+
