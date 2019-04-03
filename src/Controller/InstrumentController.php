@@ -9,15 +9,42 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class InstrumentController extends AbstractController
 {
-    /**
+    /** 
      * @Route("/instruments", name="instrument.index")
      */
     public function index(InstrumentRepository $instrumentRepository):Response
     {
-        
+
         $produits= $instrumentRepository->findAll();
-        return $this->render('instrument/index.html.twig', [
+        return $this->render('instrument/produits.html.twig', [
             'produits' => $produits
         ]);
     }
+
+   /** 
+    * @Route("/index", name="index.homepage")
+    */ 
+    public function homepage():Response
+    {
+        return $this->render('instrument/index.html.twig');
+    }
+
+    /** 
+    * @Route("/connexion", name="connexion.homepage")
+    */ 
+    public function connexion():Response
+    {
+        return $this->render('instrument/connexion.html.twig');
+    }
+
+    /** 
+    * @Route("/inscription", name="inscription.homepage")
+    */ 
+    public function inscription():Response
+    {
+        return $this->render('instrument/inscription.html.twig');
+    }
+
 }
+
+

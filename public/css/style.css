@@ -1,0 +1,82 @@
+.body{
+    background-color: black;
+}
+
+
+
+
+
+/* ==========================================================================
+   index style
+   ========================================================================== */
+
+h1{
+    margin-top: 1em;  
+    text-align: center;
+    padding: 10px 30px;
+    letter-spacing: 20px;
+}
+
+.titreindex{
+   font-family: Georgia, 'Times New Roman', Times, serif;
+   color: whitesmoke;
+   text-align:  center; 
+   font-size: 2em;  
+   padding-right: 2em;
+   padding-left: 2em;
+   border: 1px solid white;
+    border-right: none;
+    border-left: none;
+    border-radius: 20%;
+}
+
+#Nav{
+    background-color: rgb(113, 104, 133); 
+    
+}
+
+div li{
+    border: 1px solid  whitesmoke;
+    border-right: none;
+    border-left: none;
+    border-radius: 20%;
+    margin-right: 370px;   
+}
+div li:hover{
+    border-color: yellow; 
+}
+a{
+    color: white;
+}
+a:hover{
+    color: yellow; 
+     
+}
+.nav-item2{
+    margin-right:0;
+ }
+
+/* ==========================================================================
+    produits style
+   ========================================================================== */
+
+h4 {
+    text-align:  center;
+    color: rgb(122, 118, 118);
+    
+}
+
+.barre{
+    margin-top: 5em;
+    color: white;
+    background-color:  rgb(113, 104, 133);
+   
+}
+th{
+    padding: 15px 80px;
+}
+
+/* ==========================================================================
+   inscription style
+   ========================================================================== */
+
