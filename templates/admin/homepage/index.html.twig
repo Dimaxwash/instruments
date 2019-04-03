@@ -1,0 +1,16 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h1>Acueil administration</h1>
+            
+            <p>Votre id est : {{ app.user.id }}</p>
+            <p>Votre email est : {{ app.user.email }}</p>
+            
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <p><a href="{{ logout_url() }}" class="btn btn-dark">Déconnexion</a></p>
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}
