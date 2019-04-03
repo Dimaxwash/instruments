@@ -17,9 +17,9 @@ class InstrumentController extends AbstractController
 {
 // ROUTE D'AFFICHAGE DES INSTRUMENTS
     /**
-     * @Route("/instruments", name="instrument.index")
+     * @Route("/instruments", name="instruments.table")
      */
-    public function index(InstrumentRepository $instrumentRepository):Response
+    public function table(InstrumentRepository $instrumentRepository):Response
     {
         
         $produits= $instrumentRepository->findAll();
@@ -37,4 +37,13 @@ class InstrumentController extends AbstractController
         return $this->render('instrument/details.html.twig', ['result' => $result]);
     }
 
+    
+    /**
+     * @Route("/", name="home.index")
+     */
+    public function index():Response
+    {
+        return $this->render('instrument/index.html.twig');
+    }
 }
+

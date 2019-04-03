@@ -1,3 +1,4 @@
+
 {% extends 'base.html.twig' %}
 
 {% block title %} MusicShop {% endblock %}
@@ -22,7 +23,7 @@
             {% for instrument in produits %}
             <tr>
                 <td class="font-weight-bold">{{ instrument.name | capitalize }}</td>
-                <td>{{ instrument.category | capitalize }}</td>
+                <td>{{ instrument.category.name | capitalize }}</td>
                 <td>{{ instrument.description | capitalize}}</td>
                 <td>{{ instrument.image | capitalize}}</td>
                 <td>{{ instrument.price | capitalize }}€</td>
@@ -38,3 +39,4 @@
     </table>
     <a href="#"><button class="btn btn-info mt-5">Retour à la page d'accueil</button></a>
 {% endblock %}
+
