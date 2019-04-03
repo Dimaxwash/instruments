@@ -2,9 +2,11 @@
 
 namespace App\Form;
 
+use App\Entity\Category;
 use App\Entity\Instrument;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -74,9 +76,13 @@ class InstrumentType extends AbstractType
                 'help' => 'Veuillez sélectionner une image au format JPG, GIF, PNG, SVG ou WebP',
                 'data_class' => null
             ])
-
-            ->add('category')
-
+            // champ catégorie: liste déroulante
+            ->add('category', EntityType::class, [
+                'class' => Category::class,
+                'choice_label' => 'name',
+                'expanded' => false,
+                'multiple' => false
+        ])
         ;
     }
 

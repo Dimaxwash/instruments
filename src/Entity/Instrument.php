@@ -21,10 +21,6 @@ class Instrument
      */
     private $name;
 
-    /**
-     * @ORM\Column(type="string", length=50)
-     */
-    private $category;
 
     /**
      * @ORM\Column(type="text")
@@ -40,6 +36,13 @@ class Instrument
      * @ORM\Column(type="decimal", precision=6, scale=2)
      */
     private $price;
+
+    /**
+     * Many instruments have one category. This is the owning side.
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="instruments")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     */
+    private $category;
 
     public function getId(): ?int
     {
@@ -58,17 +61,7 @@ class Instrument
         return $this;
     }
 
-    public function getCategory(): ?string
-    {
-        return $this->category;
-    }
-
-    public function setCategory(string $category): self
-    {
-        $this->category = $category;
-
-        return $this;
-    }
+    
 
     public function getDescription(): ?string
     {
@@ -102,6 +95,18 @@ class Instrument
     public function setPrice($price): self
     {
         $this->price = $price;
+
+        return $this;
+    }
+
+    public function getCategory(): ?Category
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?Category $category): self
+    {
+        $this->category = $category;
 
         return $this;
     }

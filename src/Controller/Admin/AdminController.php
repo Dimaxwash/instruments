@@ -2,16 +2,19 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Category;
 use App\Entity\Instrument;
 use App\Form\InstrumentType;
 use App\Service\FileService;
+use App\Form\CategoryFormType;
 use App\Service\StringService;
+use App\Repository\CategoryRepository;
 use App\Repository\InstrumentRepository;
 use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Doctrine\Common\Persistence\ObjectManager;
 
 
 class AdminController extends AbstractController
@@ -58,18 +61,7 @@ class AdminController extends AbstractController
             // Récupération de l'entité liée au formulaire:
 
             if(!$entity->getId()){
-                // random_bytes: octets binaires aléatoires puis bin2hex pour convertir en hexa
-
-                /*
-                UploadedFile: méthodes à utiliser
-                    guessExtension(): récupérer l'extension
-                    move(): transfert du fichier
-                */
-                /* avant la création des services
-                * $imageName = bin2hex(random_bytes(16));
-                * $extension = $uploadedFile->guessExtension();
-                * $uploadedFile->move('img/', "$imageName.$extension");
-                */
+                
                 $imageName = $stringService->generateToken(16);
                 $uploadedFile = $entity->getImage();
                 $extension = $fileService->getExtension($uploadedFile);
@@ -79,9 +71,6 @@ class AdminController extends AbstractController
                 $entity->setImage("$imageName.$extension");
                 // dd($entity);
                 
-
-                $objectManager->persist($entity);
-                $objectManager->flush();
     
 
             }
@@ -110,6 +99,11 @@ class AdminController extends AbstractController
 
         // dd($entity);
 
+// MESSAGE DE CONFIRMATION D'UPDATE / AJOUT
+
+        $message = $entity->getId() ? 'Le produit a été modifié.' : "Le produit a été ajouté.";
+        $this->addFlash('notice', $message);
+
             // mise à jour de la base
         $objectManager->persist($entity);
         $objectManager->flush();
@@ -122,7 +116,65 @@ class AdminController extends AbstractController
 
     }
 
+// ROUTE CATEGORY FORM
+
+    /**
+     * @Route("/admin/categoryform", name="admin.categoryform")
+     */
+    public function categoryForm(Request $request, ObjectManager $objectManager, CategoryRepository $categoryRepository):Response
+    {
+        $entity = new Category();
+        $type = CategoryFormType::class;
+           
+
+        $form = $this->createForm($type, $entity);
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()){
+
+        $objectManager->persist($entity);
+        $objectManager->flush();
+
+            // redirectToRoute: redirection
+            return $this->redirectToRoute('admin.index');
+        }
+    return $this->render('admin/categoryForm.html.twig', ['form' => $form->createView()]);
+    
+}
+// ROUTE DELETE
+    /**
+     * @Route("/admin/delete/{id}", name="admin.delete")
+     */
+
+    public function delete(int $id, InstrumentRepository $instrumentRepository, ObjectManager $objectManager, FileService $fileService):Response
+    {
+
+        //sélection de l'entité par son identifiant
+        $entity = $instrumentRepository->find($id);
+
+        //suppression de l'entité
+        $objectManager->remove($entity);
+        $objectManager->flush();
 
 
+        // MESSAGE DE CONFIRMATION DE SUPPRESSION
+        $this->addFlash('notice', "Le produit a été supprimé.");
+
+        //suppression de l'image
+
+        $fileService->delete("images", $entity->getImage());
+
+
+        // redirectToRoute: redirection
+        return $this->redirectToRoute('admin.index');
+    }
+    // ROUTE DETAILS INSTRUMENT
+    /**
+     * @Route("/admin/{id}", name="admin.details")
+     */
+    public function details(int $id, InstrumentRepository $instrumentRepository):Response
+    {
+        $result=$instrumentRepository->find($id);
+        return $this->render('admin/details.html.twig', ['result' => $result]);
+    }
     }
 
