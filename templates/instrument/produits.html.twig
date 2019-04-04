@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} MusicShop {% endblock %}
+{% block icon %} <link rel="shortcut icon" type="image/x-icon" href="images/note.png" />{% endblock %}
+
+{% block body %}
+<h1 class="text-info">MusicShop</h1>
+
+<h4>Bienvenue chez <a href="{{url('index.homepage')}}"> <span class="text-info"> MusicShop</span></a>, n°1 de la vente e-commerce d'instrument musicaux. </h4>
+
+    <table class="table table-striped mt-5">
+    <thead class="thead-dark">
+        <th>Name</th>
+        <th>Category</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Price</th>
+    </thead>
+        
+            {% for instrument in produits %}
+            <tr>
+                <td class="font-weight-bold">{{ instrument.name | capitalize }}</td>
+                <td>{{ instrument.category | capitalize }}</td>
+                <td>{{ instrument.description | capitalize}}</td>
+                <td>{{ instrument.image | capitalize}}</td>
+                <td>{{ instrument.price | capitalize }}€</td>
+            </tr>
+            {% endfor %}
+        
+        
+    </table>
+    <a href="{{url('index.homepage')}}"><button class="btn btn-info mt-5">Retour à la page d'accueil</button></a>
+{% endblock %}
