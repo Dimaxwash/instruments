@@ -1,6 +1,7 @@
-{% extends 'base.html.twig' %}
+{% extends "base.html.twig" %}
 
-{% block title %} MusicShop {% endblock %}
+{% block title %}Accueil{% endblock %}
+
 {% block icon %} <link rel="shortcut icon" type="image/x-icon" href="images/note.png" />{% endblock %}
 
 {% block body %}
@@ -11,15 +12,26 @@
 
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
-            <li class="nav-item active">
-                <a class="nav-link" href="{{ url('connexion.homepage') }}">Connexion<span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item1">
-                <a class="nav-link" href="{{ url('inscription.homepage') }}">Inscription</a>
-            </li>
-            <li class="nav-item2">
-                <a class="nav-link" href="{{ url('instrument.index') }}">Liste des produits</a>
-            </li>
+                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                    <li><a class="nav-link" href="{{ url("instruments.table") }}">Utilisateur</a></li>
+                    <li><a class="nav-link" href="{{ url("admin.homepage.index") }}">Administrateur</a></li>
+                    <li><a class="nav-link" href="{{ logout_url() }}">Déconnexion</a></li>
+
+                {% else %}
+
+                    <li class="nav-item active">
+                        <a class="nav-link" href="{{ url('app_login') }}">Connexion<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item1">
+                        <a class="nav-link" href="{{ url('app_register') }}">Inscription</a>
+                    </li>
+                    <li class="nav-item2">
+                        <a class="nav-link" href="{{ url('instruments.table') }}">Liste des produits</a>
+                    </li>
+
+                {% endif %}
+
             </ul>
         </div>
     </nav>
@@ -29,6 +41,7 @@
     <div class="img_acceuil">
         <img src="img/photoaccueil2.jpg" width="1110px" height="560px">
     </div>
-    
-    
+
+  
+
 {% endblock %}

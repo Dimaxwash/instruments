@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+<h1>{{ result.name | capitalize}}</h1>
+
+
+
+<div class="row">
+        <div class="col-sm-6">
+        <img class="img-fluid" src="{{ asset('images/' ~result.image) }}" alt="{{result.image}}">
+    </div>
+    <div class="col-sm-6">
+    <p><b>Description: </b>{{ result.description | capitalize}}</p>
+    <p><b>Catégorie: </b>{{ result.category.name | capitalize }}</p>
+    <p><b>Prix: </b>{{ result.price | number_format(2, ',', ' ')}} €</p>
+
+    <p><a href="{{ url('instruments.table') }}" class="btn btn-primary">Retour liste produits</a></p>
+    </div>
+</div>
+
+
+{% endblock %}

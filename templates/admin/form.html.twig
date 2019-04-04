@@ -1,0 +1,52 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block title %}Formulaire produits{% endblock %}
+
+{% block stylesheets %}
+{% endblock %}
+{% block body %}
+
+
+<div class="row">
+    <div class="col">
+        <h1>Formulaire instruments</h1>
+
+
+
+        {{ form_start(form, { attr: {'novalidate':'novalidate'} }) }}
+        <p>
+        {# form provient du contrôleur #}
+        {{ form_label(form.name, 'Nom: ') }} 
+        {{ form_widget(form.name, {attr:
+        {
+            placeholder: "Nom de l'instrument", 
+            autofocus: 'autofocus'
+            }
+            }) }} 
+        </p>
+        <p>
+        {{ form_label(form.price, 'Prix: ') }} 
+        {{ form_widget(form.price) }} 
+        </p>
+        <p>
+        {{ form_label(form.description, 'Description: ') }} 
+        {{ form_widget(form.description) }} 
+        </p>
+        <p>
+        {{ form_label(form.image, 'Image: ') }} 
+        {{ form_widget(form.image) }}
+        </p>
+         <p>
+        {{ form_label(form.category, 'Catégorie: ') }} 
+        {{ form_widget(form.category) }}
+        </p>
+        <p><a href="{{ url("admin.categoryform") }}" class="btn btn-secondary btn-sm">Créer catégorie</a></p>
+        <p>
+        <button class="btn btn-success" type="submit">Valider</button>
+        <a href="{{ url('admin.index') }}" class="btn btn-dark">Annuler</a>
+        </p>
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% endblock %}

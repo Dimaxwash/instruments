@@ -1,0 +1,66 @@
+{% extends 'adminbase.html.twig' %}
+
+
+{% block title %} MusicShop {% endblock %}
+
+{% block icon %}{% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+
+
+{% block body %}
+
+<h1 class="text-info">MusicShop</h1>
+
+<h4>Bienvenue chez <span class="text-info"> MusicShop</span>, n°1 de la vente e-commerce d'instrument musicaux. </h4>
+
+{# inclusion de la page affichant les messages flash #}
+{% include "inc/flash.messages.html.twig" %}
+
+
+{# BOUTONS AJOUTER PRODUIT ET CATEGORIE#}
+<p class="text-right"><a href="{{ url('admin.form') }}" class="btn btn-info">Ajouter produit</a></p>
+<p class="text-right"><a href="{{ url('admin.categoryform') }}" class="btn btn-secondary">Créer une catégorie</a></p>
+
+{# tableau #}
+    <table class="table table-striped mt-5">
+    <thead class="thead-dark">
+        <th>Nom</th>
+        <th>Categories</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Prix</th>
+        <th>Actions</th>
+    </thead>
+        
+            {% for instrument in produits %}
+            <tr>
+                <td class="font-weight-bold">{{ instrument.name | capitalize }}</td>
+                <td>{{ instrument.category.name | capitalize }}</td>
+                <td>{{ instrument.description | capitalize}}</td>
+                <td><img src="{{asset('images/'~instrument.image)}}" alt="{ instrument.image }"></td>
+                <td>{{ instrument.price | capitalize }}€</td>
+                <td>
+                <p><a href="{{ url('admin.details', {id: instrument.id})}} " class="btn btn-sm btn-dark">Consulter</a></p>
+                <p><a href="{{ url('admin.update', {id: instrument.id}) }}" class="btn btn-sm btn-secondary">Modifier</a></p>
+                <p><a href="{{ url('admin.delete', {id:instrument.id}) }}" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteModal">Supprimer</a></p>
+
+                </td>
+            </tr>
+            {% endfor %}
+        
+        
+    </table>
+    <a href="{{ url("home.index") }}"><button class="btn btn-dark mt-5">Retour à la page d'accueil</button></a>
+
+    {# inclusion du modal de confirmation d'effacement #}
+    {% include "inc/modal.html.twig" %}
+
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('js/confirmDeleteModal.js') }}"></script>
+{% endblock %}

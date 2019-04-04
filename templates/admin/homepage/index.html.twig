@@ -1,0 +1,26 @@
+{% extends 'adminbase.html.twig' %}
+
+{% block body %}
+    <div class="row">
+        <div class="col">
+            <h1>Accueil administration</h1>
+            
+            <p>Votre id est : {{ app.user.id }}</p>
+            <p>Votre email est : {{ app.user.email }}</p>
+            
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                <p><a href="{{ url("admin.index") }}" class="btn btn-primary">Accès produits</a></p>
+                <p><a href="{{ logout_url() }}" class="btn btn-dark">Déconnexion</a></p>
+            {% endif %}
+        </div>
+    </div>
+
+
+<div class="cledesol">
+  <img src="img/cledesol.png" alt="cle de sol" width="220px" height="360px" >
+</div>
+
+
+
+{% endblock %}
