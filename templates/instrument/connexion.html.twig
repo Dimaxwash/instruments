@@ -7,24 +7,35 @@
 {% block body %}
 <h1 class="titreindex">Music~Shop</h1>
 
+<br>
 
 <form>
   <div class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+    <label for="exampleInputEmail1"></label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Entrer votre adresse email">
+    <small id="emailHelp" class="form-text text-muted">Nous ne partagerons votre adresse à personne.</small>
   </div>
+
   <div class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <label for="exampleInputPassword1"></label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Mot de passe">
   </div>
+
   <div class="form-group form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
   </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+
+  
+    <button type="submit" class="btn btn-primary mt-3">Submit</button>
+  
+ </form>
+ 
+  
+  <a href="{{url('index.homepage')}}"><button class="btn btn-info mt-3">Retour à la page d'accueil</button></a>
 
 
- <a href="{{url('index.homepage')}}"><button class="btn btn-info mt-5">Retour à la page d'accueil</button></a>
+  <div class="cledesol">
+    <img src="img/cledesol.png" alt="" width="220px" height="350px">
+  </div>
 {% endblock %}

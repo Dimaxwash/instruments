@@ -33,27 +33,7 @@
     <label for="inputAddress">Address</label>
     <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
   </div>
-  <div class="form-group">
-    <label for="inputAddress2">Address 2</label>
-    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-  </div>
-  <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="inputCity">City</label>
-      <input type="text" class="form-control" id="inputCity">
-    </div>
-    <div class="form-group col-md-4">
-      <label for="inputState">State</label>
-      <select id="inputState" class="form-control">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="form-group col-md-2">
-      <label for="inputZip">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-  </div>
+ 
   <div class="form-group">
     <div class="form-check">
       <input class="form-check-input" type="checkbox" id="gridCheck">
@@ -62,9 +42,16 @@
       </label>
     </div>
   </div>
-  <button type="submit" class="btn btn-primary">Sign in</button>
+  <button type="submit" class="btn btn-primary mt-3">Sign in</button>
 </form>
 
 
- <a href="{{url('index.homepage')}}"><button class="btn btn-info mt-5">Retour à la page d'accueil</button></a>
+ <a href="{{url('index.homepage')}}"><button class="btn btn-info mt-3">Retour à la page d'accueil</button></a>
+
+
+
+
+<div class="cledesol">
+  <img src="img/cledesol.png" alt="cle de sol" width="220px" height="360px">
+</div>
 {% endblock %}
