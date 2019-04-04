@@ -13,7 +13,7 @@
 
 
 
-        {{ form_start(form, { attr: {'novalidate':'novalidate'} }) }}
+        {{ form_start(form, { attr: {'novalidate':'novalidate', class: "form-dark"} }) }}
         <p>
         {# form provient du contrôleur #}
         {{ form_label(form.name, 'Nom: ') }} 
