@@ -16,8 +16,11 @@
                 <p><a href="{{ logout_url() }}" class="btn btn-dark">Déconnexion</a></p>
 
     {% else %}
-                <a href="{{ url("app_login") }}" class="btn btn-primary">Se connecter</a>
+                <p><a href="{{ url("app_login") }}" class="btn btn-primary">Se connecter</a></p>
+                <p>
+                <a href="{{ url("app_register") }}" class="btn btn-warning">Créer un compte</a></p>
+                <p><a href="{{ url("instruments.table") }}" class="btn btn-info">Nos produits</a></p>
 
     {% endif %}
-    
+
 {% endblock %}

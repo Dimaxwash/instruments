@@ -21,7 +21,7 @@ security:
                     - App\Security\AppAuthenticator
             logout:
                 path: security.logout
-                target: app_login
+                target: home.index
             access_denied_handler: App\Security\AccessDeniedHandler
 
 
