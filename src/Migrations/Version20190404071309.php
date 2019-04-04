@@ -10,7 +10,7 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20190403095524 extends AbstractMigration
+final class Version20190404071309 extends AbstractMigration
 {
     public function getDescription() : string
     {
@@ -23,9 +23,9 @@ final class Version20190403095524 extends AbstractMigration
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
         $this->addSql('CREATE TABLE category (id INT AUTO_INCREMENT NOT NULL, name VARCHAR(50) NOT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
-        $this->addSql('ALTER TABLE instrument ADD category_id INT DEFAULT NULL, DROP category');
+        $this->addSql('CREATE TABLE user (id INT AUTO_INCREMENT NOT NULL, email VARCHAR(180) NOT NULL, roles LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', password VARCHAR(255) NOT NULL, UNIQUE INDEX UNIQ_8D93D649E7927C74 (email), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE instrument (id INT AUTO_INCREMENT NOT NULL, category_id INT DEFAULT NULL, name VARCHAR(50) NOT NULL, description LONGTEXT NOT NULL, image VARCHAR(150) NOT NULL, price NUMERIC(6, 2) NOT NULL, INDEX IDX_3CBF69DD12469DE2 (category_id), PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
         $this->addSql('ALTER TABLE instrument ADD CONSTRAINT FK_3CBF69DD12469DE2 FOREIGN KEY (category_id) REFERENCES category (id)');
-        $this->addSql('CREATE INDEX IDX_3CBF69DD12469DE2 ON instrument (category_id)');
     }
 
     public function down(Schema $schema) : void
@@ -35,7 +35,7 @@ final class Version20190403095524 extends AbstractMigration
 
         $this->addSql('ALTER TABLE instrument DROP FOREIGN KEY FK_3CBF69DD12469DE2');
         $this->addSql('DROP TABLE category');
-        $this->addSql('DROP INDEX IDX_3CBF69DD12469DE2 ON instrument');
-        $this->addSql('ALTER TABLE instrument ADD category VARCHAR(50) NOT NULL COLLATE utf8mb4_unicode_ci, DROP category_id');
+        $this->addSql('DROP TABLE user');
+        $this->addSql('DROP TABLE instrument');
     }
 }

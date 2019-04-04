@@ -2,6 +2,11 @@
 {% extends 'base.html.twig' %}
 
 {% block title %} MusicShop {% endblock %}
+
+{% block stylesheets %}
+<link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
 {% block icon %} <link rel="shortcut icon" type="image/x-icon" href="images/note.png" />{% endblock %}
 
 {% block body %}
@@ -25,7 +30,7 @@
                 <td class="font-weight-bold">{{ instrument.name | capitalize }}</td>
                 <td>{{ instrument.category.name | capitalize }}</td>
                 <td>{{ instrument.description | capitalize}}</td>
-                <td>{{ instrument.image | capitalize}}</td>
+                <td><img src="{{asset('images/'~instrument.image)}}" alt="{ instrument.image }"></td>
                 <td>{{ instrument.price | capitalize }}€</td>
                 <td>
                 <a href="{{ url('instrument.details', {id: instrument.id})}} " class="btn btn-sm btn-info">Consulter</a>
@@ -37,6 +42,6 @@
         
         
     </table>
-    <a href="#"><button class="btn btn-info mt-5">Retour à la page d'accueil</button></a>
+    <a href="{{ url("home.index") }}"><button class="btn btn-info mt-5">Retour à la page d'accueil</button></a>
 {% endblock %}
 

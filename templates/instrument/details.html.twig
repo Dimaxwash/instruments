@@ -2,9 +2,6 @@
 <h1>{{ result.name | capitalize}}</h1>
 
 
-<pre>
-    {{ dump(result) }}
-</pre>
 
 <div class="row">
         <div class="col-sm-6">
@@ -12,7 +9,9 @@
     </div>
     <div class="col-sm-6">
     <p><b>Description: </b>{{ result.description | capitalize}}</p>
+    <p><b>Catégorie: </b>{{ result.category.name | capitalize }}</p>
     <p><b>Prix: </b>{{ result.price | number_format(2, ',', ' ')}} €</p>
+
     <p><a href="{{ url('instruments.table') }}" class="btn btn-primary">Retour liste produits</a></p>
     </div>
 </div>

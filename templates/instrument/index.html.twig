@@ -1,1 +1,23 @@
-test
+{% extends "base.html.twig" %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block icon %} <link rel="shortcut icon" type="image/x-icon" href="images/note.png" />{% endblock %}
+
+{% block body %}
+
+<h4>Bienvenue chez <span class="text-info"> MusicShop</span>, n°1 de la vente e-commerce d'instrument musicaux. </h4>
+
+
+    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                <a href="{{ url("instruments.table") }}" class="btn btn-primary">Accès utilisateur</a>
+                <a href="{{ url("admin.homepage.index") }}" class="btn btn-warning">Accès administrateur</a>
+                <p><a href="{{ logout_url() }}" class="btn btn-dark">Déconnexion</a></p>
+
+    {% else %}
+                <a href="{{ url("app_login") }}" class="btn btn-primary">Se connecter</a>
+
+    {% endif %}
+    
+{% endblock %}

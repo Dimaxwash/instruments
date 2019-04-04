@@ -9,6 +9,8 @@
             <p>Votre email est : {{ app.user.email }}</p>
             
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+
+                <p><a href="{{ url("admin.index") }}" class="btn btn-primary">Accès produits</a></p>
                 <p><a href="{{ logout_url() }}" class="btn btn-dark">Déconnexion</a></p>
             {% endif %}
         </div>

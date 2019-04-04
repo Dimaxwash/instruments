@@ -131,6 +131,11 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
 
+// MESSAGE DE CONFIRMATION D'AJOUT DE CATEGORIE
+
+$message = 'Catégorie créée.';
+$this->addFlash('notice', $message);
+
         $objectManager->persist($entity);
         $objectManager->flush();
 
