@@ -27,8 +27,7 @@ h1{
 }
 
 #Nav{
-    background-color: rgb(113, 104, 133); 
-    
+    background-color: rgb(113, 104, 133);    
 }
 
 div li{
@@ -61,23 +60,20 @@ a:hover{
 
 h4 {
     text-align:  center;
-    color: rgb(122, 118, 118);
-    
+    color: rgb(122, 118, 118);    
 }
 
 .barre{
     margin-top: 5em;
     color: white;
-    background-color:  rgb(113, 104, 133);
-   
+    background-color:  rgb(113, 104, 133);  
 }
+
 th{
     padding: 15px 80px;
 }
 
-/* ==========================================================================
-   inscription style
-   ========================================================================== */
+
 
 /* ==========================================================================
    Cle de sol
@@ -93,6 +89,7 @@ th{
 	height: 360px;
     max-width: 100%;	
 }
+
 table img{
     width: 10rem
 }
